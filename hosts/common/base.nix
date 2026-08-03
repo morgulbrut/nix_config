@@ -75,9 +75,9 @@ in
     fish
   ];
 
-  users.users.luix = {
+  users.users.tillo = {
     isNormalUser = true;
-    description = "luix";
+    description = "tillo";
     extraGroups = [
       "networkmanager"
       "wheel"

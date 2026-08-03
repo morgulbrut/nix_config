@@ -2,32 +2,30 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  home.username = "luiz";
-  home.homeDirectory = "/home/luiz";
+  home.username = "tillo";
+  home.homeDirectory = "/home/tillo";
   home.stateVersion = "25.11";
 
   imports = [
     ../modules/applications
     ../modules/cli
-    ../modules/programming
+    #../modules/programming
     ../modules/herdr
     ../modules/kitty
     ../modules/buildandpush
-    ../modules/notes-sync
+    #../modules/notes-sync
     ../modules/fish
-    ../modules/docker
-    ../modules/godot
+    #../modules/docker
+    #../modules/godot
     ../modules/vpn
     ../modules/audio
     ../modules/niri
-    ../modules/qutebrowser
-    ../modules/kdenlive
-    ../modules/nvfvim
-    ../modules/virt-manager
-    ../modules/work
+    #../modules/qutebrowser
+    #../modules/kdenlive
+    #../modules/prismlauncher
+    #../modules/nvfvim
+    ../modules/flatpak
   ];
-
-  luix.godot.enable = true;
 
   home.activation.cleanupBrokenNvimConfig = lib.hm.dag.entryBefore [ "linkGeneration" ] ''
     nvim_dir="${config.xdg.configHome}/nvim"

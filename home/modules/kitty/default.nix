@@ -4,7 +4,7 @@
     enable = true;
     font = {
       name = "Hurmit Nerd Font Mono";
-      size = 24;
+      size = 12;
     };
     settings = {
       shell = "${pkgs.fish}/bin/fish";
@@ -47,8 +47,8 @@
       tab_bar_align = "center";
       tab_fade = "0.15 0.35 0.65 1";
 
-      background_blur = "4";
-      background_opacity = "0.99";
+      background_blur = "0";
+      background_opacity = "0.70";
 
       clipboard_control = "write-clipboard write-primary read-clipboard-ask read-primary-ask";
       allow_hyperlinks = "yes";

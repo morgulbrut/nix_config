@@ -34,11 +34,12 @@ in
     gnome-disk-utility
     gimp-with-plugins
     libreoffice
+    thunar
     nautilus
-    obs-studio
-    obsidian
-    qpwgraph
-    qownnotes
+    #obs-studio
+    #obsidian
+    #qpwgraph
+    #qownnotes
     vlc
     wdisplays
     kdePackages.okular

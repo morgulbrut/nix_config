@@ -19,7 +19,7 @@
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Star Citizen helper flake
-    nix-citizen.url = "github:LovingMelody/nix-citizen";
+    #nix-citizen.url = "github:LovingMelody/nix-citizen";
 
     # Herdr terminal workflow
     herdr.url = "github:ogulcancelik/herdr/v0.7.1";
@@ -77,20 +77,10 @@
     in
     {
       nixosConfigurations = {
-        pc = mkHost {
-          hostName = "pc";
-          homeHost = ./home/hosts/pc.nix;
-          hmUser = "luix";
-        };
-        l = mkHost {
-          hostName = "l";
-          homeHost = ./home/hosts/l.nix;
-          hmUser = "luix";
-        };
-        work = mkHost {
-          hostName = "work";
-          homeHost = ./home/hosts/work.nix;
-          hmUser = "luiz";
+        osgiliath = mkHost {
+          hostName = "osgiliath";
+          homeHost = ./home/hosts/osgiliath.nix;
+          hmUser = "tillo";
         };
       };
     };
