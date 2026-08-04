@@ -7,21 +7,16 @@
     ../features/hardware-intel.nix
     ../features/flatpak.nix
     ./hardware-configuration.nix
+    ./storage.nix
   ];
 
   networking.hostName = "osgiliath";
 
   environment.systemPackages = with pkgs; [
     #  Add local pacakaged here
-    vscode-fhs
-    kicad
-    platformio
-    picocom
-    nmap
-    typst
-    inkscape
   ];
   services.auto-cpufreq.enable = false;
+
   services.auto-cpufreq.settings = {
     battery = {
       governor = "powersave";

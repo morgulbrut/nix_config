@@ -3,6 +3,7 @@ let
   isWorkProfile = hostName == "work" || (hostName == null && config.home.username == "luiz");
   isLaptopProfile = hostName == "l";
   isPcProfile = hostName == "pc";
+  isOsgiliathProfile = hostName == "osgiliath";
   workLaptopOutput = "eDP-1";
   laptopInternalOutput = "eDP-1";
   sharedMainOutput = "PNP(BNQ) BenQ EX3415R R7M0014701Q";
@@ -13,6 +14,10 @@ let
   workRightPortraitOutput = sharedRightPortraitOutput;
   pcMainOutput = sharedMainOutput;
   pcRightPortraitOutput = sharedRightPortraitOutput;
+  # Same reasoning: connector order (DP-2/DP-3) is not stable across boots on
+  # this host, which caused the two identical Lenovo monitors to swap sides.
+  osgiliathLeftOutput = "Lenovo Group Limited LEN P24h-20 V3066412";
+  osgiliathRightOutput = "Lenovo Group Limited LEN P24h-20 V306640T";
   outputConfig =
     if isLaptopProfile then
       ''
@@ -47,6 +52,17 @@ let
         output "${workRightPortraitOutput}" {
             transform "270"
             position x=5040 y=0
+        }
+      ''
+    else if isOsgiliathProfile then
+      ''
+        output "${osgiliathLeftOutput}" {
+            position x=0 y=0
+            focus-at-startup
+        }
+
+        output "${osgiliathRightOutput}" {
+            position x=2560 y=0
         }
       ''
     else if isPcProfile then

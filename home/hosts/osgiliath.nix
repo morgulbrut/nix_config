@@ -9,22 +9,12 @@
   imports = [
     ../modules/applications
     ../modules/cli
-    #../modules/programming
-    ../modules/herdr
     ../modules/kitty
-    ../modules/buildandpush
-    #../modules/notes-sync
-    ../modules/fish
-    #../modules/docker
-    #../modules/godot
-    ../modules/vpn
+    ../modules/zsh
     ../modules/audio
     ../modules/niri
-    #../modules/qutebrowser
-    #../modules/kdenlive
-    #../modules/prismlauncher
-    #../modules/nvfvim
     ../modules/flatpak
+    ../modules/programming
   ];
 
   home.activation.cleanupBrokenNvimConfig = lib.hm.dag.entryBefore [ "linkGeneration" ] ''

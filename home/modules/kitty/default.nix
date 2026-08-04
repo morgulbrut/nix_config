@@ -7,7 +7,7 @@
       size = 12;
     };
     settings = {
-      shell = "${pkgs.fish}/bin/fish";
+      shell = "${pkgs.zsh}/bin/zsh";
 
       bold_font = "auto";
       italic_font = "auto";
@@ -47,7 +47,7 @@
       tab_bar_align = "center";
       tab_fade = "0.15 0.35 0.65 1";
 
-      background_blur = "0";
+      background_blur = "1";
       background_opacity = "0.70";
 
       clipboard_control = "write-clipboard write-primary read-clipboard-ask read-primary-ask";

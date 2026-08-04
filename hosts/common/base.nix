@@ -46,11 +46,11 @@ in
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "exfat" ];
+  boot.supportedFilesystems = [ "exfat" "ntfs3" ];
 
   # Display manager (SDDM) + X11 stack for the greeter
   services.xserver.enable = true;
-  services.xserver.xkb = { layout = "ch"; variant = ""; };
+  services.xserver.xkb = { layout = "us"; variant = "intl"; };
   services.displayManager.sddm = {
     enable = true;
     settings = {
@@ -69,10 +69,10 @@ in
   services.udisks2.enable = true;
   services.hardware.bolt.enable = true;
 
-  # Keep bash as the login/recovery shell; interactive bash hands off to fish.
+  # Keep bash as the login/recovery shell; interactive bash hands off to zsh.
   environment.shells = with pkgs; [
     bashInteractive
-    fish
+    zsh
   ];
 
   users.users.tillo = {
@@ -102,15 +102,15 @@ in
   };
   programs.dconf.enable = true;
   programs.bash.interactiveShellInit = ''
-    # Launch fish for normal interactive shells, while keeping bash in /etc/passwd.
+    # Launch zsh for normal interactive shells, while keeping bash in /etc/passwd.
     if [[ $UID -eq 1000 && $SHLVL == [12] ]]; then
       read -r parent < /proc/$PPID/comm || parent=
-      if [[ $parent != fish ]]; then
-        SHELL=${pkgs.fish}/bin/fish exec ${pkgs.fish}/bin/fish
+      if [[ $parent != zsh ]]; then
+        SHELL=${pkgs.zsh}/bin/zsh exec ${pkgs.zsh}/bin/zsh
       fi
     fi
   '';
-  programs.fish.enable = true; # expose fish system-wide without making it the login shell
+  programs.zsh.enable = true; # expose zsh system-wide without making it the login shell
   programs.xwayland.enable = true;
   programs.niri.enable = true; # Niri session in the display manager
 
@@ -156,5 +156,5 @@ in
     xwayland-satellite
   ];
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }

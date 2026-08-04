@@ -24,18 +24,19 @@ in
     stow
     unzip
     wget
+    nmap
     wl-clipboard
+    eza
 
     # Desktop apps
     bottles
     chromium
-    discord
+    #discord
     firefox
     gnome-disk-utility
-    gimp-with-plugins
     libreoffice
     thunar
-    nautilus
+    #nautilus
     #obs-studio
     #obsidian
     #qpwgraph
@@ -44,17 +45,24 @@ in
     wdisplays
     kdePackages.okular
 
-
     # Media tools
     audacity
     ffmpeg
+
+    # Design tools
     orca-slicer
-    yt-dlp
+    kicad
+    openscad
+    typst
+    inkscape
+    gimp-with-plugins
+
+    # yt-dlp
 
     # Music tools
-    chromaprint
-    picard
-    termsonic
+    #chromaprint
+    #picard
+    #termsonic
   ];
 
   xdg.mimeApps = {
