@@ -9,6 +9,8 @@
     settings = {
       shell = "${pkgs.zsh}/bin/zsh";
 
+      hide_window_decorations = "yes";
+
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
