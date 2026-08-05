@@ -51,6 +51,7 @@ let
         "temp"
         "network"
         "ram"
+        "drive_health"
       ];
       thickness = 43;
       widget_spacing = 9;
@@ -409,6 +410,9 @@ let
       audio_spectrum = true;
       tappy_mode = true;
       type = "noctalia/bongocat:cat";
+    };
+    drive_health = {
+      type = "gustav0ar/drive-health:summary";
     };
     keybind-cheatsheet = {
       show_label = true;

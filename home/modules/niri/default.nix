@@ -117,7 +117,7 @@ let
   ] [
     ""
   ] noWaybarConfig;
-  widthConfig = lib.replaceStrings [z
+  widthConfig = lib.replaceStrings [
     "    Mod+Period { expel-window-from-column; }\n"
   ] [
     "    Mod+Period { set-column-width \"+10%\"; }\n"
