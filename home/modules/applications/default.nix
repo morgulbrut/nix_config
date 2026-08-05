@@ -27,6 +27,7 @@ in
     nmap
     wl-clipboard
     eza
+    smartmontools
 
     # Desktop apps
     bottles
@@ -44,6 +45,7 @@ in
     vlc
     wdisplays
     kdePackages.okular
+    sone
 
     # Media tools
     audacity
@@ -54,8 +56,9 @@ in
     kicad
     openscad
     typst
-    inkscape
+    inkscape  
     gimp-with-plugins
+
 
     # yt-dlp
 

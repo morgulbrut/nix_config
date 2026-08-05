@@ -38,6 +38,8 @@
       grep = "grep --color=auto";
       ".." = "cd ..";
       "..." = "cd ../..";
+
+      rebnix = "cd ~/nix_config && sudo nixos-rebuild switch --flake .";
     };
   };
 

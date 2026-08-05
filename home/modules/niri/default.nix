@@ -117,7 +117,7 @@ let
   ] [
     ""
   ] noWaybarConfig;
-  widthConfig = lib.replaceStrings [
+  widthConfig = lib.replaceStrings [z
     "    Mod+Period { expel-window-from-column; }\n"
   ] [
     "    Mod+Period { set-column-width \"+10%\"; }\n"
@@ -127,6 +127,7 @@ let
     Mod+D hotkey-overlay-title="Noctalia: Launcher" { spawn "noctalia-ipc" "panel-toggle" "launcher"; }
     Mod+S hotkey-overlay-title="Noctalia: Control Center" { spawn "noctalia-ipc" "panel-toggle" "control-center"; }
     Mod+Comma hotkey-overlay-title="Noctalia: Settings" { spawn "noctalia-ipc" "settings-toggle"; }
+    Mod+F1 { spawn "noctalia" "msg" "panel-toggle" "kenn/keybind-cheatsheet:cheatsheet"; }
   '';
   noctaliaLockBind = ''
     Super+Alt+L hotkey-overlay-title="Noctalia: Lock" { spawn "noctalia-ipc" "session" "lock"; }

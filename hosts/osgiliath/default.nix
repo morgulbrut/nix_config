@@ -6,6 +6,7 @@
     ../features/caldigit-ts5-plus.nix
     ../features/hardware-intel.nix
     ../features/flatpak.nix
+    ../features/noctalia-drive-health
     ./hardware-configuration.nix
     ./storage.nix
   ];

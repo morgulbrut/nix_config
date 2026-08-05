@@ -151,6 +151,7 @@ in
 
   environment.systemPackages = with pkgs; [
     exfatprogs
+    smartmontools
     usbutils
     wireguard-tools
     xwayland-satellite
