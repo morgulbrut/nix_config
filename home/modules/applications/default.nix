@@ -27,6 +27,13 @@ in
     nmap
     wl-clipboard
     eza
+    fzf
+    btop
+    lolcat
+    fd
+    tldr
+    atuin
+    erdtree
     smartmontools
 
     # Desktop apps
@@ -59,7 +66,7 @@ in
     inkscape  
     gimp-with-plugins
 
-
+    rustdesk-flutter
     # yt-dlp
 
     # Music tools

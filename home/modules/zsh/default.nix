@@ -35,10 +35,15 @@
       ls = "eza --group-directories-first --icons";
       ll = "ls -lh";
       la = "ls -lAh";
-      grep = "grep --color=auto";
+      grep = "rg";
+      ripgrep = "rg";
+      vi = "vim";
+      vim = "nvim";
+      tree = "erd -H -y inverted";
+      tl = "tree -l";
+      td = "tree --dirs-only -l";
       ".." = "cd ..";
       "..." = "cd ../..";
-
       rebnix = "cd ~/nix_config && sudo nixos-rebuild switch --flake .";
     };
   };

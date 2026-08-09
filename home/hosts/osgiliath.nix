@@ -4,11 +4,10 @@
 
   home.username = "tillo";
   home.homeDirectory = "/home/tillo";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   imports = [
     ../modules/applications
-    ../modules/cli
     ../modules/kitty
     ../modules/zsh
     ../modules/audio
@@ -31,7 +30,7 @@
 
   xdg.enable = true;
   fonts.fontconfig.enable = true;
-
+  
   # ensure ~/.nix-profile points at the managed Home Manager profile so packages resolve
   home.file.".nix-profile" = {
     source = config.home.path;
