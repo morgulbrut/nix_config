@@ -2,13 +2,13 @@
 {
   imports = [
     ../common/base.nix
-    ../../audiofix.nix
-    ../features/caldigit-ts5-plus.nix
-    ../features/hardware-intel.nix
-    ../features/flatpak.nix
-    ../features/gaming.nix
-    ../features/lutris.nix
-    ../features/noctalia-drive-health
+    ../../modules/audio/system.nix
+    ../../modules/caldigit-ts5-plus/system.nix
+    ../../modules/hardware-intel/system.nix
+    ../../modules/flatpak/system.nix
+    ../../modules/gaming/system.nix
+    ../../modules/lutris/system.nix
+    ../../modules/noctalia-drive-health/system.nix
     ./hardware-configuration.nix
     ./storage.nix
   ];

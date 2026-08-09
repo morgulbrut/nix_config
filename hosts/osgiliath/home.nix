@@ -7,13 +7,12 @@
   home.stateVersion = "26.05";
 
   imports = [
-    ../modules/applications
-    ../modules/kitty
-    ../modules/zsh
-    ../modules/audio
-    ../modules/niri
-    ../modules/flatpak
-    ../modules/programming
+    ../../modules/applications/home.nix
+    ../../modules/kitty/home.nix
+    ../../modules/zsh/home.nix
+    ../../modules/audio/home.nix
+    ../../modules/niri/home.nix
+    ../../modules/programming/home.nix
   ];
 
   home.activation.cleanupBrokenNvimConfig = lib.hm.dag.entryBefore [ "linkGeneration" ] ''

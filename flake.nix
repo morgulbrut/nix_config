@@ -18,29 +18,6 @@
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    # Star Citizen helper flake
-    #nix-citizen.url = "github:LovingMelody/nix-citizen";
-
-    # Herdr terminal workflow
-    herdr.url = "github:ogulcancelik/herdr/v0.7.1";
-
-    # Neorg flashcards plugin and NVF module
-    luixbits-neorg-flashcards.url = "github:LuixBits/luixbits-neorg-flashcards.nvim";
-
-    # Sentry plugin and NVF module
-    luixbits-sentry.url = "github:LuixBits/luixbits-sentry.nvim";
-
-    # RoomPlan plugin
-    roomplan.url = "github:LuixBits/luixbits-roomplanner.nvim";
-    roomplan.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Neotest adapter for Node's built-in test runner. This is kept as a raw
-    # source input because it is not packaged in our pinned nixpkgs yet.
-    neotest-nodejs = {
-      url = "github:AkisArou/neotest-nodejs";
-      flake = false;
-    };
-
   };
 
   outputs =
@@ -49,7 +26,6 @@
       mkHost =
         {
           hostName,
-          homeHost,
           hmUser,
         }:
         nixpkgs.lib.nixosSystem {
@@ -69,7 +45,7 @@
                 inherit inputs hostName;
               };
               home-manager.users = {
-                "${hmUser}" = import homeHost;
+                "${hmUser}" = import ./hosts/${hostName}/home.nix;
               };
             }
           ];
@@ -79,7 +55,6 @@
       nixosConfigurations = {
         osgiliath = mkHost {
           hostName = "osgiliath";
-          homeHost = ./home/hosts/osgiliath.nix;
           hmUser = "tillo";
         };
       };

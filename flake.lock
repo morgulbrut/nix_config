@@ -16,25 +16,6 @@
         "url": "https://git.lix.systems/lix-project/flake-compat.git"
       }
     },
-    "herdr": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1782308245,
-        "narHash": "sha256-/WnsUO1DuSmBfVo8LCFaDJEZvSrYnJZPyRNqASbPzV8=",
-        "owner": "ogulcancelik",
-        "repo": "herdr",
-        "rev": "dbc45f6306bda3eee681d73a14b48ffbb39f3fcc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ogulcancelik",
-        "ref": "v0.7.1",
-        "repo": "herdr",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -56,42 +37,6 @@
         "type": "github"
       }
     },
-    "luixbits-neorg-flashcards": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1784489962,
-        "narHash": "sha256-l7TR6FthKadLQKNbs34k5oZ4clUWJjiqM3hoO/u9Wyg=",
-        "owner": "LuixBits",
-        "repo": "luixbits-neorg-flashcards.nvim",
-        "rev": "5cd528d79c6d7b3ac650f70c2e93153c32b6dec7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LuixBits",
-        "repo": "luixbits-neorg-flashcards.nvim",
-        "type": "github"
-      }
-    },
-    "luixbits-sentry": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1784365566,
-        "narHash": "sha256-S/D/2JLujwo6y/9BZ7TGun4HdanOriQX7DB2YjoX6jo=",
-        "owner": "LuixBits",
-        "repo": "luixbits-sentry.nvim",
-        "rev": "c866aa41cd1884e94b37875228d188ed1212cfe5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LuixBits",
-        "repo": "luixbits-sentry.nvim",
-        "type": "github"
-      }
-    },
     "mnw": {
       "locked": {
         "lastModified": 1780772958,
@@ -107,34 +52,18 @@
         "type": "github"
       }
     },
-    "neotest-nodejs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1782407420,
-        "narHash": "sha256-tUiq9Doz12fWhcmh5n1V9u6a1ycwHMOH5yL3unZq2Os=",
-        "owner": "AkisArou",
-        "repo": "neotest-nodejs",
-        "rev": "68e558dff61f7ac630f55ab63a092c1767965386",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AkisArou",
-        "repo": "neotest-nodejs",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1779357205,
-        "narHash": "sha256-cCO8aTqss5x9Ky8GWkpY0Hy5fyTZEbtifSUV8QjSzic=",
+        "lastModified": 1785734586,
+        "narHash": "sha256-ODZkEK9Gy50yg6h98u7KkitZ3oc/uuTFK00bh1CRdNA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f83fc3c307e74bc5fd5adb7eb6b8b13ffd2a36e1",
+        "rev": "531670d871c0e29724a02f3cbcac170adc65b58c",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixos-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -151,54 +80,6 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1782723713,
-        "narHash": "sha256-oPXCU/SSUokcGaJREHibG1CBX3+s/W7orDWQOZDsEeQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b5aa0fbd538984f6e3d201be0005b4463d8b09f8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1783224372,
-        "narHash": "sha256-8i/87eeoqiGE4yOTjwSA3Eh/ziJRQEmd/unYU+K27sk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d407951447dcd00442e97087bf374aad70c04cea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1785734586,
-        "narHash": "sha256-ODZkEK9Gy50yg6h98u7KkitZ3oc/uuTFK00bh1CRdNA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "531670d871c0e29724a02f3cbcac170adc65b58c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -245,38 +126,13 @@
         "type": "github"
       }
     },
-    "roomplan": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1784905918,
-        "narHash": "sha256-50z3IkJ2xl5+9nf9cGs+nNMZ2JXQwOGMpkluRIX45oQ=",
-        "owner": "LuixBits",
-        "repo": "luixbits-roomplanner.nvim",
-        "rev": "7a9a9a5d2c613dd3a53a1fa15cc39ee600057e2e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LuixBits",
-        "repo": "luixbits-roomplanner.nvim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
-        "herdr": "herdr",
         "home-manager": "home-manager",
-        "luixbits-neorg-flashcards": "luixbits-neorg-flashcards",
-        "luixbits-sentry": "luixbits-sentry",
-        "neotest-nodejs": "neotest-nodejs",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
-        "nvf": "nvf",
-        "roomplan": "roomplan"
+        "nvf": "nvf"
       }
     }
   },

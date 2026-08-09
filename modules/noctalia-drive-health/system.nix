@@ -8,7 +8,7 @@
   # (see that file's header) instead of the plugin's live, auto-updating copy.
   #
   # Enable the plugin's "system_collector_enabled" setting (see
-  # home/modules/niri/noctalia/default.nix) so the plugin actually reads
+  # modules/niri/noctalia/home.nix) so the plugin actually reads
   # /run/noctalia-drive-health/raw.json instead of shelling out to smartctl
   # itself. The plugin's own pause/resume and "change interval" UI actions
   # won't work (they pkexec into /usr/local/libexec, which isn't populated

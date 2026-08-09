@@ -157,8 +157,8 @@ let
 in
 {
   imports = [
-    ./noctalia
-    ./polkit
+    ./noctalia/home.nix
+    ./polkit/home.nix
   ];
 
   xdg.configFile."niri/config.kdl".text =
