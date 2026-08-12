@@ -166,5 +166,13 @@ in
     + ''
       ${outputConfig}
       ${workRenderConfig}
+
+      // Kitty sets its own background_opacity/background_blur; without this,
+      // niri's default opaque border-background rectangle behind every window
+      // hides that transparency.
+      window-rule {
+          match app-id="kitty"
+          draw-border-with-background false
+      }
     '';
 }

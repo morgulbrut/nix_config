@@ -15,12 +15,14 @@
 
   networking.hostName = "osgiliath";
 
-  environment.systemPackages = with pkgs; [
-    #  Add local pacakaged here
-  ];
   services.auto-cpufreq.enable = false;
 
+
   programs.xfconf.enable = true;
+  environment.systemPackages = with pkgs; [
+    papirus-icon-theme
+    xfce.thunar
+  ];
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-archive-plugin
     thunar-volman
