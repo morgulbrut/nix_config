@@ -21,8 +21,10 @@
   programs.xfconf.enable = true;
   environment.systemPackages = with pkgs; [
     papirus-icon-theme
-    xfce.thunar
+    adw-gtk3
+    bibata-cursors
   ];
+  programs.thunar.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-archive-plugin
     thunar-volman
