@@ -3,7 +3,6 @@
   imports = [
     ../common/base.nix
     ../../modules/audio/system.nix
-    ../../modules/caldigit-ts5-plus/system.nix
     ../../modules/hardware-intel/system.nix
     ../../modules/flatpak/system.nix
     ../../modules/gaming/system.nix

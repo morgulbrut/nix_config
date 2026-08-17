@@ -9,6 +9,7 @@
   imports = [
     ../../modules/applications/home.nix
     ../../modules/kitty/home.nix
+    ../../modules/shell/home.nix
     ../../modules/zsh/home.nix
     ../../modules/audio/home.nix
     ../../modules/niri/home.nix

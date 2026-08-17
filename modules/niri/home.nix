@@ -19,42 +19,7 @@ let
   osgiliathLeftOutput = "Lenovo Group Limited LEN P24h-20 V3066412";
   osgiliathRightOutput = "Lenovo Group Limited LEN P24h-20 V306640T";
   outputConfig =
-    if isLaptopProfile then
-      ''
-        output "${laptopInternalOutput}" {
-            mode "2880x1800@120.000"
-            scale 1.75
-            position x=0 y=0
-        }
-
-        output "${sharedMainOutput}" {
-            position x=1646 y=0
-            focus-at-startup
-        }
-
-        output "${sharedRightPortraitOutput}" {
-            scale 1.25
-            transform "270"
-            position x=5086 y=0
-        }
-      ''
-    else if isWorkProfile then
-      ''
-        output "${workLaptopOutput}" {
-            position x=0 y=0
-        }
-
-        output "${workMainOutput}" {
-            position x=1600 y=0
-            focus-at-startup
-        }
-
-        output "${workRightPortraitOutput}" {
-            transform "270"
-            position x=5040 y=0
-        }
-      ''
-    else if isOsgiliathProfile then
+   if isOsgiliathProfile then
       ''
         output "${osgiliathLeftOutput}" {
             position x=0 y=0
@@ -63,21 +28,6 @@ let
 
         output "${osgiliathRightOutput}" {
             position x=2560 y=0
-        }
-      ''
-    else if isPcProfile then
-      ''
-        output "${pcMainOutput}" {
-            mode "3440x1440@100.000"
-            position x=0 y=0
-            focus-at-startup
-        }
-
-        output "${pcRightPortraitOutput}" {
-            mode "3840x2160@59.997"
-            scale 1.25
-            transform "270"
-            position x=3440 y=0
         }
       ''
     else
@@ -106,7 +56,8 @@ let
       ''
     else
       "";
-  baseConfig = builtins.readFile "${pkgs.niri.doc}/share/doc/niri/default-config.kdl";
+  # baseConfig = builtins.readFile "${pkgs.niri.doc}/share/doc/niri/default-config.kdl";
+  baseConfig = builtins.readFile ./config.kdl;
   noWaybarConfig = lib.replaceStrings [
     "spawn-at-startup \"waybar\"\n"
   ] [

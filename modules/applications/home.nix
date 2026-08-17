@@ -52,11 +52,12 @@ in
     vlc
     wdisplays
     kdePackages.okular
-    sone
+    art
 
     # Media tools
     audacity
     ffmpeg
+    sone
 
     # Design tools
     orca-slicer
