@@ -30,6 +30,12 @@
       "INTERACTIVE_COMMENTS"
       "NO_BEEP"
     ];
+
+    initContent = ''
+      if [[ -n "$KITTY_WINDOW_ID" ]]; then
+        fastfetch -c neofetch -l none | ponysay -b round
+      fi
+    '';
   };
 
   programs.starship.enable = true;

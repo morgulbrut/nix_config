@@ -19,7 +19,8 @@ in
     # Core utilities
     clinfo
     cliphist
-    freshfetch
+    fastfetch
+    ponysay
     ripgrep
     stow
     unzip
