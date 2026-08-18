@@ -8,6 +8,7 @@
     ../../modules/gaming/system.nix
     ../../modules/lutris/system.nix
     ../../modules/noctalia-drive-health/system.nix
+    ../../modules/virtualisation/system.nix
     ./hardware-configuration.nix
     ./storage.nix
   ];
