@@ -1,0 +1,33 @@
+{ lib, pkgs, ... }:
+{
+  programs.xfconf.enable = true;
+  environment.systemPackages = with pkgs; [
+    papirus-icon-theme
+    adw-gtk3
+    bibata-cursors
+  ];
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs; [ # was pkgs.xfce
+    thunar-archive-plugin
+    thunar-volman
+  ];
+
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+
+  # tumbler's raw-thumbnailer plugin links libopenraw (which already decodes
+  # Canon CR3 fine) but never registered image/x-canon-cr3 in its mime-type
+  # list, so .cr3 files never get routed to it. Patch the list rather than
+  # waiting on upstream.
+  nixpkgs.overlays = [
+    (final: prev: {
+      tumbler = prev.tumbler.overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace plugins/raw-thumbnailer/raw-thumbnailer-provider.c \
+            --replace-fail '"image/x-canon-cr2",' '"image/x-canon-cr2",
+    "image/x-canon-cr3",'
+        '';
+      });
+    })
+  ];
+}

@@ -24,7 +24,7 @@ in
     firefox
     gnome-disk-utility
     libreoffice
-    thunar
+    #thunar
     #nautilus
     #obsidian
     #qpwgraph
