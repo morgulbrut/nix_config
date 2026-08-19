@@ -20,7 +20,6 @@ in
     # Desktop apps
     # bottles
     chromium
-    gparted
     #discord
     firefox
     gnome-disk-utility
