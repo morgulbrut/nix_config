@@ -16,49 +16,32 @@ in
   home.sessionVariables.BROWSER = "firefox";
 
   home.packages = with pkgs; [
-    # Core utilities
-    clinfo
-    cliphist
-    fastfetch
-    ponysay
-    ripgrep
-    stow
-    unzip
-    wget
-    nmap
-    wl-clipboard
-    eza
-    fzf
-    btop
-    lolcat
-    fd
-    tldr
-    atuin
-    erdtree
-    smartmontools
 
     # Desktop apps
-    bottles
+    # bottles
     chromium
+    gparted
     #discord
     firefox
     gnome-disk-utility
     libreoffice
     thunar
     #nautilus
-    #obs-studio
     #obsidian
     #qpwgraph
     #qownnotes
     vlc
     wdisplays
     kdePackages.okular
+    #obs-studio
+    audacity
     art
 
     # Media tools
-    audacity
+
     ffmpeg
     sone
+    libheif
 
     # Design tools
     orca-slicer
@@ -70,6 +53,7 @@ in
 
     rustdesk-flutter
     # yt-dlp
+
 
     # Music tools
     #chromaprint

@@ -7,7 +7,7 @@
   home.stateVersion = "26.05";
 
   imports = [
-    ../../modules/applications/home.nix
+    ../../modules/desktop/home.nix
     ../../modules/kitty/home.nix
     ../../modules/shell/home.nix
     ../../modules/zsh/home.nix

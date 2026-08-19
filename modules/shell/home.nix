@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, pkgs, ... }:
 {
   home.shellAliases = {
     ls = "eza --group-directories-first --icons";
@@ -16,4 +16,29 @@
     rebnix = "cd ~/nix_config && sudo nixos-rebuild switch --flake .";
     cleanix = "nix-collect-garbage && rebnix && nixos-rebuild list-generations";
   };
+
+
+  home.packages = with pkgs; [
+    bash   # compatibility
+    clinfo
+    cliphist
+    fastfetch
+    ponysay
+    ripgrep
+    stow
+    unzip
+    wget
+    nmap
+    wl-clipboard
+    eza
+    fzf
+    btop
+    lolcat
+    fd
+    tldr
+    # atuin
+    erdtree
+    smartmontools
+    exiftool
+  ];
 }
