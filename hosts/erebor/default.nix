@@ -5,7 +5,6 @@
     ../common/desktop.nix
     ../../modules/audio/system.nix
     ../../modules/thunar/system.nix
-    ../../modules/printing/system.nix
     ../../modules/hardware-intel/system.nix
     ../../modules/flatpak/system.nix
     ../../modules/gaming/system.nix
@@ -15,7 +14,7 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "osgiliath";
+  networking.hostName = "erebor";
 
   services.auto-cpufreq.enable = false;
 

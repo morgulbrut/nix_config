@@ -13,6 +13,11 @@ let
   ] (_: [ firefoxDesktop ]);
 in
 {
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk3";
+  };
+
   home.sessionVariables.BROWSER = "firefox";
 
   home.packages = with pkgs; [
@@ -65,6 +70,7 @@ in
     associations.added = firefoxWebHandlers;
     defaultApplications = {
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "application/pdf" = [ "org.kde.okular.desktop" ];
     } // firefoxWebHandlers;
   };
 }

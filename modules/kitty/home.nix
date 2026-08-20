@@ -44,17 +44,18 @@
       window_padding_width = "1";
       single_window_padding_width = "1";
       placement_strategy = "center";
-      inactive_text_alpha = "0.5";
+      inactive_text_alpha = "1";
       tab_bar_style = "fade";
       tab_bar_align = "center";
       tab_fade = "0.15 0.35 0.65 1";
 
       background_blur = "1";
       background_opacity = "0.70";
+      inactive_background_opacity = "0.5";
 
       clipboard_control = "write-clipboard write-primary read-clipboard-ask read-primary-ask";
       allow_hyperlinks = "yes";
-      shell_integration = "enabled";
+      shell_integration = "enableda";
       allow_cloning = "ask";
       notify_on_cmd_finish = "unfocused 10.0 bell";
     };

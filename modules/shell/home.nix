@@ -13,7 +13,7 @@
     td = "tree --dirs-only -l";
     ".." = "cd ..";
     "..." = "cd ../..";
-    rebnix = "cd ~/nix_config && sudo nixos-rebuild switch --flake .";
+    rebnix = "cd ~/nix_config && sudo nixos-rebuild switch --flake .#$(hostname)";
     cleanix = "nix-collect-garbage && rebnix && nixos-rebuild list-generations";
   };
 

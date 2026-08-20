@@ -48,24 +48,9 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "exfat" "ntfs3" ];
 
-  # Display manager (SDDM) + X11 stack for the greeter
-  services.xserver.enable = true;
-  services.xserver.xkb = { layout = "us"; variant = "intl"; };
-  services.displayManager.sddm = {
-    enable = true;
-    settings = {
-      General = {
-        InputMethod = "";
-      };
-    };
-  };
-  services.displayManager.defaultSession = "niri";
-  console.keyMap = "sg";
-
   services.printing.enable = true;
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
-  services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.hardware.bolt.enable = true;
 
@@ -86,21 +71,11 @@ in
     shell = pkgs.bashInteractive;
   };
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.droid-sans-mono
-    nerd-fonts.symbols-only
-    nerd-fonts.bigblue-terminal
-    nerd-fonts.heavy-data
-    nerd-fonts.hurmit
-    roboto
-  ];
-
   # Program toggles
-  programs.bazecor = {
-    enable = true;
-    package = pkgsUnstable.bazecor;
-  };
-  programs.dconf.enable = true;
+  # programs.bazecor = {
+  #   enable = true;
+  #   package = pkgsUnstable.bazecor;
+  # };
   programs.bash.interactiveShellInit = ''
     # Launch zsh for normal interactive shells, while keeping bash in /etc/passwd.
     if [[ $UID -eq 1000 && $SHLVL == [12] ]]; then
@@ -111,8 +86,6 @@ in
     fi
   '';
   programs.zsh.enable = true; # expose zsh system-wide without making it the login shell
-  programs.xwayland.enable = true;
-  programs.niri.enable = true; # Niri session in the display manager
 
   # The Defy exposes a CDC ACM serial interface for Bazecor. Keep modem probing
   # away from it so Bazecor can own the protocol handshake reliably.
@@ -122,11 +95,6 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  # Graphics (25.11 uses hardware.graphics.*)
-  hardware.graphics = {
-    enable = true;
-  };
-
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     warn-dirty = false;
@@ -135,26 +103,11 @@ in
     allowed-users = [ "@wheel" ];
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
-    ];
-    # Use niri's recommended portal preference order (niri-portals.conf).
-    configPackages = [ pkgs.niri ];
-  };
-
-  # Needed for the Secret portal (Flatpak apps) and recommended by niri docs.
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.sddm.enableGnomeKeyring = true;
-
   environment.systemPackages = with pkgs; [
     exfatprogs
     smartmontools
     usbutils
     wireguard-tools
-    xwayland-satellite
   ];
 
   system.stateVersion = "26.05";

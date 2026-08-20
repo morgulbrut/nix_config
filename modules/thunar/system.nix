@@ -1,11 +1,6 @@
 { lib, pkgs, ... }:
 {
   programs.xfconf.enable = true;
-  environment.systemPackages = with pkgs; [
-    papirus-icon-theme
-    adw-gtk3
-    bibata-cursors
-  ];
   programs.thunar.enable = true;
   programs.thunar.plugins = with pkgs; [ # was pkgs.xfce
     thunar-archive-plugin
