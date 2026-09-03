@@ -6,12 +6,12 @@
     pwvucontrol
   ];
 
-  services.easyeffects = {
-    enable = true;
-    preset = "luix-voice";
+  # services.easyeffects = {
+  #   enable = true;
+  #   preset = "luix-voice";
 
-    extraPresets = {
-      luix-voice = lib.importJSON ./presets/luix-voice.json;
-    };
-  };
+  #   extraPresets = {
+  #     luix-voice = lib.importJSON ./presets/luix-voice.json;
+  #   };
+  # };
 }
