@@ -49,7 +49,6 @@ in
 
     # Design tools
     orca-slicer
-    kicad
     openscad
     typst
     inkscape  

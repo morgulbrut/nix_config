@@ -8,7 +8,7 @@
     # vscode-extensions.myriad-dreamin.tinymist
     # vscode-extensions.ms-python.vscode-pylance
     uv
-    python3
+    (python3.withPackages (ps: [ ps.pip ]))
     picocom
     neovim
     go

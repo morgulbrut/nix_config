@@ -8,6 +8,7 @@
 
   imports = [
     ../../modules/desktop/home.nix
+    ../../modules/kicad/home.nix
     ../../modules/kitty/home.nix
     ../../modules/shell/home.nix
     ../../modules/zsh/home.nix
