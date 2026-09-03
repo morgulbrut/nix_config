@@ -40,5 +40,6 @@
     erdtree
     smartmontools
     exiftool
+    killall
   ];
 }
