@@ -57,6 +57,10 @@
           hostName = "osgiliath";
           hmUser = "tillo";
         };
+        erebor = mkHost {
+          hostName = "erebor";
+          hmUser = "tillo";
+        };
       };
     };
 }

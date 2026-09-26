@@ -66,6 +66,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "dialout"
       "docker"
     ];
     shell = pkgs.bashInteractive;

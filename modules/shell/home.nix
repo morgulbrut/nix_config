@@ -13,7 +13,7 @@
     td = "tree --dirs-only -l";
     ".." = "cd ..";
     "..." = "cd ../..";
-    rebnix = "cd ~/nix_config && sudo nixos-rebuild switch --flake .#$(hostname)";
+    rebnix = "cd ~/nix_config && nh os switch .";
     cleanix = "nix-collect-garbage && rebnix && nixos-rebuild list-generations";
   };
 
@@ -41,5 +41,7 @@
     smartmontools
     exiftool
     killall
+    git
+    nh 
   ];
 }

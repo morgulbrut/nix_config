@@ -1,27 +1,23 @@
-{pkgs, ... }:
+{ ... }:
 {
   imports = [
     ../common/base.nix
-    ../common/desktop.nix
-    ../../modules/audio/system.nix
-    ../../modules/thunar/system.nix
-    ../../modules/hardware-intel/system.nix
-    ../../modules/flatpak/system.nix
-    ../../modules/gaming/system.nix
-    ../../modules/lutris/system.nix
-    ../../modules/noctalia-drive-health/system.nix
-    ../../modules/virtualisation/system.nix
+    ../../modules/nas/system.nix
+    ../../modules/jellyfin/system.nix
+    ../../modules/arm/system.nix
+    ../../modules/tailscale/system.nix
+    ../../modules/webserver/system.nix
+    # Add ../../modules/mainsail/system.nix once a printer is connected —
+    # see that file for what to fill in first.
     ./hardware-configuration.nix
   ];
 
   networking.hostName = "erebor";
 
-  services.auto-cpufreq.enable = false;
+  # Pinned so it's a known literal for modules/nas + modules/arm to reference
+  # (ARM_UID, file ownership) rather than whatever a fresh useradd picks.
+  users.users.tillo.uid = 1000;
 
-  boot.kernelParams = [ "usbcore.autosuspend=-1" ];
-  
-  services.udev.packages = with pkgs; [ platformio-core.udev ];
-  
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -35,4 +31,3 @@
     };
   };
 }
-

@@ -7,6 +7,16 @@
     thunar-volman
   ];
 
+  # thunar-archive-plugin only adds the "Extract Here"/"Create Archive" menu
+  # entries; it delegates the actual work to an archive manager (xarchiver)
+  # plus CLI tools for each format.
+  environment.systemPackages = with pkgs; [
+    xarchiver
+    p7zip # .7z, plus zip fallback
+    zip # create .zip (unzip for extraction already ships in home.nix)
+    unrar # extract .rar (unfree, already allowed for this config)
+  ];
+
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
 
