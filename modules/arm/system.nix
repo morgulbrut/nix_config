@@ -21,7 +21,6 @@ in
       "/var/lib/arm/logs:/home/arm/logs"
       "/mnt/storage/media:/home/arm/media"
       "/var/lib/arm/config:/etc/arm/config"
-      "/run/udev:/run/udev:ro"
     ];
     # Three optical drives installed (confirmed on erebor 2026-09-27), passed
     # through by their stable /dev/disk/by-id names rather than raw
@@ -39,6 +38,18 @@ in
     # mapping needed/possible in host mode; see WEBSERVER_PORT below for how
     # ARM's own UI ends up on :8081 instead of its default :8080 (which
     # FileBrowser already owns) without one.
+    #
+    # Do NOT bind-mount the host's /run/udev in here (an earlier revision of
+    # this file did, read-only, thinking it would share device metadata).
+    # That made the container's OWN udevd unable to create its control
+    # socket/db under /run/udev (read-only fs), so it silently died despite
+    # logging "udev Started successfully" -- confirmed on erebor: no udevd
+    # process at all inside the container, and ARM's wrapper script
+    # (/opt/arm/scripts/docker/docker_arm_wrapper.sh) never even created its
+    # own log file, i.e. udev's RUN+= rule never fired once. --network=host
+    # alone is sufficient for the container's private, writable /run/udev
+    # (container's own tmpfs) to receive host uevents and run cdrom_id
+    # itself; nothing needs to be shared in from the host.
     extraOptions = [
       "--privileged"
       "--network=host"
@@ -60,9 +71,19 @@ in
   # own config directly on the host -- so pin it to 8081 (FileBrowser owns
   # 8080) every time the container starts, idempotently, self-healing even
   # if the file is ever regenerated.
+  #
+  # WEBSERVER_IP defaults to "x.x.x.x" (autodetect), which ARM resolves to a
+  # single specific interface address (confirmed on erebor: bound only to
+  # the LAN IP 192.168.0.98) rather than all interfaces -- unlike Jellyfin
+  # and FileBrowser, which both listen on 0.0.0.0. That means the ARM UI is
+  # unreachable over Tailscale even though the LAN address works fine. Pin
+  # it to 0.0.0.0 for the same reachability as every other service here.
   systemd.services.docker-arm.preStart = ''
     if [ -f /var/lib/arm/config/arm.yaml ]; then
-      ${pkgs.gnused}/bin/sed -i 's/^WEBSERVER_PORT:.*/WEBSERVER_PORT: 8081/' /var/lib/arm/config/arm.yaml
+      ${pkgs.gnused}/bin/sed -i \
+        -e 's/^WEBSERVER_PORT:.*/WEBSERVER_PORT: 8081/' \
+        -e 's/^WEBSERVER_IP:.*/WEBSERVER_IP: 0.0.0.0/' \
+        /var/lib/arm/config/arm.yaml
     fi
   '';
 
