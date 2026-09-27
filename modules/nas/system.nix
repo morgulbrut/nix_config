@@ -13,6 +13,13 @@ let
     "/dev/disk/by-id/CHANGEME-disk2"
   ];
   parityDisk = "/dev/disk/by-id/CHANGEME-parity1";
+
+  # A dead/missing data disk shouldn't stop the box booting (it needs to stay
+  # reachable over SSH/tailscale to fix it).
+  diskOptions = [
+    "nofail"
+    "x-systemd.device-timeout=10s"
+  ];
 in
 {
   # Pinned (rather than auto-assigned) so other modules — e.g. the ARM
@@ -25,20 +32,28 @@ in
   fileSystems."/mnt/disk1" = {
     device = builtins.elemAt dataDisks 0;
     fsType = "ext4";
+    options = diskOptions;
   };
   fileSystems."/mnt/disk2" = {
     device = builtins.elemAt dataDisks 1;
     fsType = "ext4";
+    options = diskOptions;
   };
   fileSystems."/mnt/parity1" = {
     device = parityDisk;
     fsType = "ext4";
+    options = diskOptions;
   };
 
   fileSystems."/mnt/storage" = {
     device = "/mnt/disk1:/mnt/disk2";
     fsType = "fuse.mergerfs";
     options = [
+      "nofail"
+      # Don't mount the pool if a branch disk is missing, otherwise uploads
+      # would silently land on the root filesystem under the empty mountpoint.
+      "x-systemd.requires-mounts-for=/mnt/disk1"
+      "x-systemd.requires-mounts-for=/mnt/disk2"
       "defaults"
       "allow_other"
       "use_ino"
