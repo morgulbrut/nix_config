@@ -1,4 +1,14 @@
-{ config, ... }:
+{ config, lib, hostName ? null, ... }:
+let
+  # Per-host prompt accent so it's obvious at a glance which machine a
+  # terminal is on — erebor (the headless server) gets a loud red so it
+  # can't be mistaken for the desktop. Unlisted/unknown hosts keep the
+  # original gruvbox orange.
+  hostAccents = {
+    erebor = "#cc241d"; # color_red — server, be careful
+  };
+  hostAccent = hostAccents.${toString hostName} or "#d65d0e"; # color_orange default
+in
 {
   programs.zsh = {
     enable = true;
@@ -40,5 +50,7 @@
 
   programs.starship.enable = true;
 
-  xdg.configFile."starship.toml".source = ./gruvbox.toml;
+  xdg.configFile."starship.toml".text = lib.replaceStrings [ "@@HOST_ACCENT@@" ] [ hostAccent ] (
+    builtins.readFile ./gruvbox.toml
+  );
 }
