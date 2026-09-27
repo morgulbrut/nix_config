@@ -23,6 +23,12 @@ in
   environment.etc."mdadm.conf".text = ''
     ARRAY /dev/md0 metadata=1.2 UUID=99e187e6:30787339:52c5d3a3:741990b8 name=erebor:storage6t
     ARRAY /dev/md1 metadata=1.2 UUID=9bf89c25:4701d381:8a1bb8f7:e05e4cbc name=erebor:storage2t
+
+    # mdmonitor refuses to run at all (fails at startup) without one of
+    # these set, even though there's no MTA on erebor to actually deliver
+    # mail — this just satisfies that check. Revisit with a real alert path
+    # (e.g. a PROGRAM script hitting ntfy/ a webhook) if that matters later.
+    MAILADDR root
   '';
 
   # Pinned (rather than auto-assigned) so other modules — e.g. the ARM
