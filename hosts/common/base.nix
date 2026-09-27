@@ -109,6 +109,11 @@ in
     smartmontools
     usbutils
     wireguard-tools
+    # SSHing in from a Kitty terminal sends TERM=xterm-kitty; without this,
+    # a host has no matching terminfo entry and zsh's line editor
+    # miscalculates cursor position on every keystroke, which looks like
+    # keystrokes doubling as you type.
+    kitty.terminfo
   ];
 
   system.stateVersion = "26.05";
