@@ -131,10 +131,18 @@ in
   # every client acts as tillo:storage regardless of its own local uid
   # numbering -- simpler and more robust than relying on uids matching
   # across machines.
+  #
+  # fsid=0 is required: mergerfs is a FUSE filesystem, so it has no stable
+  # device number for nfsd to build file handles from on its own. Without
+  # it, `exportfs -r` fails outright ("requires fsid= for NFS export") on
+  # every nfs-server start -- the service still shows "active" since that's
+  # only an ExecStartPre, but nothing is actually exported, so clients get a
+  # bare "No such file or directory" trying to mount. 0 marks it as the
+  # (only) NFSv4 export root here.
   services.nfs.server = {
     enable = true;
     exports = ''
-      /mnt/storage 192.168.0.0/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=3000) 100.64.0.0/10(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=3000)
+      /mnt/storage 192.168.0.0/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=3000,fsid=0) 100.64.0.0/10(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=3000,fsid=0)
     '';
   };
   systemd.services.nfs-server.unitConfig.RequiresMountsFor = [ "/mnt/storage" ];
