@@ -33,8 +33,16 @@
 
   # NFS mount of erebor's NAS pool. Automount (mounts on first access, not
   # at boot) plus nofail so boot never blocks on erebor being reachable.
+  #
+  # Device path is "/", not "/mnt/storage": the export has fsid=0
+  # (modules/nas/system.nix, required since mergerfs has no stable device
+  # number of its own), which makes that export *become* the NFSv4
+  # pseudo-root rather than just identifying it -- "/mnt/storage" doesn't
+  # exist in the NFSv4 namespace at all once that's set. Verified directly:
+  # mounting "erebor:/mnt/storage" fails ENOENT, "erebor:/" is the same
+  # content and works.
   fileSystems."/mnt/nas" = {
-    device = "erebor.local:/mnt/storage";
+    device = "erebor.local:/";
     fsType = "nfs";
     options = [
       "nfsvers=4.2"
