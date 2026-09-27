@@ -70,6 +70,11 @@ in
       "docker"
     ];
     shell = pkgs.bashInteractive;
+    # Dedicated key for logging into hosts (separate from the GitHub key);
+    # lets any host with sshd enabled accept tillo without a password.
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINz18tVI691J9FhrmnnyKvfiM07UjlY3u13zH5EFFlJO tillo@homelab"
+    ];
   };
 
   # Program toggles
