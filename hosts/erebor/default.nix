@@ -18,11 +18,15 @@
   # (ARM_UID, file ownership) rather than whatever a fresh useradd picks.
   users.users.tillo.uid = 1000;
 
-  # Headless box — password auth for now so it's reachable right after the
-  # first boot; switch to key-only once a key is set up.
+  # Headless box — key-only now that tillo's homelab key is authorized
+  # (hosts/common/base.nix) and verified working.
   services.openssh = {
     enable = true;
     openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
   };
 
   services.avahi = {
