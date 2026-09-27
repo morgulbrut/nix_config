@@ -124,4 +124,21 @@ in
       };
     };
   };
+  systemd.services.samba-smbd.unitConfig.RequiresMountsFor = [ "/mnt/storage" ];
+
+  # NFS export so other Linux boxes (e.g. osgiliath) can mount the pool
+  # directly instead of going through Samba. all_squash + anon uid/gid means
+  # every client acts as tillo:storage regardless of its own local uid
+  # numbering -- simpler and more robust than relying on uids matching
+  # across machines.
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /mnt/storage 192.168.0.0/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=3000) 100.64.0.0/10(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=3000)
+    '';
+  };
+  systemd.services.nfs-server.unitConfig.RequiresMountsFor = [ "/mnt/storage" ];
+
+  networking.firewall.allowedTCPPorts = [ 2049 ];
+  networking.firewall.allowedUDPPorts = [ 2049 ];
 }
