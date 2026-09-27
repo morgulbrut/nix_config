@@ -66,6 +66,13 @@ in
     fi
   '';
 
+  # With --network=host, Docker no longer manages any port-forwarding/NAT
+  # for this container -- ARM's webserver is a plain host-bound process now,
+  # same as any other service, so it needs an explicit firewall opening like
+  # everything else does (previously worked by accident, since Docker's own
+  # published-port NAT rules typically bypass the host firewall entirely).
+  networking.firewall.allowedTCPPorts = [ 8081 ];
+
   # Auto-rip-on-insert has open reports of flakiness specifically on NixOS
   # (github.com/automatic-ripping-machine/automatic-ripping-machine/issues/1160).
   # If a disc doesn't start ripping on its own, use ARM's web UI at
