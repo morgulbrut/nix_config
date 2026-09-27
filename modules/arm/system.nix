@@ -24,13 +24,18 @@ in
       "/var/lib/arm/config:/etc/arm/config"
       "/run/udev:/run/udev:ro"
     ];
-    # CHANGEME once the optical drive is installed: confirm the device name
-    # with `lsscsi -g` on erebor (usually /dev/sr0) and update if different.
+    # Three optical drives installed (confirmed on erebor 2026-09-27), passed
+    # through by their stable /dev/disk/by-id names rather than raw
+    # /dev/srN -- those can renumber if a drive is ever unplugged/reordered,
+    # which would otherwise silently hand ARM the wrong physical drive.
     # --privileged + /run/udev above let the container's own udev monitoring
-    # see disc-insert events, which is how ARM triggers rips automatically.
+    # see disc-insert events on any of the three, which is how ARM triggers
+    # rips automatically.
     extraOptions = [
       "--privileged"
-      "--device=/dev/sr0:/dev/sr0"
+      "--device=/dev/disk/by-id/ata-hp_DVD_RW_AD-7251H5_1974703L21:/dev/sr0"
+      "--device=/dev/disk/by-id/ata-hp_DVD-RAM_GH82N_302CC064268:/dev/sr1"
+      "--device=/dev/disk/by-id/ata-hp_DVD_D_DH16D6SH_2E7217920529:/dev/sr2"
     ];
   };
 
