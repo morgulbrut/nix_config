@@ -11,7 +11,7 @@ in
   virtualisation.oci-containers.containers.arm = {
     image = "automaticrippingmachine/automatic-ripping-machine:latest";
     autoStart = true;
-    ports = [ "8080:8080" ];
+    ports = [ "8081:8080" ]; # 8080 is FileBrowser's (modules/filebrowser/system.nix)
     environment = {
       ARM_UID = uid;
       ARM_GID = gid;
@@ -43,5 +43,5 @@ in
   # Auto-rip-on-insert has open reports of flakiness specifically on NixOS
   # (github.com/automatic-ripping-machine/automatic-ripping-machine/issues/1160).
   # If a disc doesn't start ripping on its own, use ARM's web UI at
-  # http://erebor:8080 to kick a rip off manually as a fallback.
+  # http://erebor:8081 to kick a rip off manually as a fallback.
 }
