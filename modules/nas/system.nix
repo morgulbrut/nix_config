@@ -73,6 +73,12 @@ in
   ];
 
   systemd.tmpfiles.rules = [
+    # The pool's own root defaults to root:root 755 from mkfs.ext4 (mergerfs
+    # just reflects the underlying branches' root ownership) -- without
+    # this, nothing can write directly at the top level of /mnt/storage or
+    # /mnt/nas, only inside subdirectories that already have their own
+    # explicit ownership like media/ below.
+    "d /mnt/storage 2775 tillo storage -"
     "d /mnt/storage/media 2775 tillo storage -"
     "d /mnt/storage/media/movies 2775 tillo storage -"
     "d /mnt/storage/media/tv 2775 tillo storage -"
