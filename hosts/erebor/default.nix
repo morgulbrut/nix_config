@@ -19,14 +19,15 @@
   # (ARM_UID, file ownership) rather than whatever a fresh useradd picks.
   users.users.tillo.uid = 1000;
 
-  # Headless box — key-only now that tillo's homelab key is authorized
-  # (hosts/common/base.nix) and verified working.
+  # Password auth re-enabled on request (tillo's homelab key in
+  # hosts/common/base.nix still works too -- this just adds password as a
+  # second way in).
   services.openssh = {
     enable = true;
     openFirewall = true;
     settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
+      PasswordAuthentication = true;
+      KbdInteractiveAuthentication = true;
     };
   };
 

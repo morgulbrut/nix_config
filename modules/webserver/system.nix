@@ -54,15 +54,15 @@ let
         <p class="sub">home server</p>
         <ul>
           <li>
-            <a href="http://erebor.local:8080">FileBrowser</a>
+            <a href="http://files.erebor">FileBrowser</a>
             <div class="desc">upload / browse files</div>
           </li>
           <li>
-            <a href="http://erebor.local:8096">Jellyfin</a>
+            <a href="http://jellyfin.erebor">Jellyfin</a>
             <div class="desc">movies, TV, music</div>
           </li>
           <li>
-            <a href="http://erebor.local:8081">ARM</a>
+            <a href="http://arm.erebor">ARM</a>
             <div class="desc">disc ripper</div>
           </li>
         </ul>
@@ -80,12 +80,32 @@ in
   # doesn't try to provision a Let's Encrypt cert for a host that's only
   # reachable over the LAN/tailnet. Point a real domain at erebor and switch
   # this to a domain-name key later if a site needs public HTTPS.
+  #
+  # The per-service subdomains below (files/jellyfin/arm.erebor) do use
+  # domain-name keys, since Caddy needs the Host header to route them, but
+  # each is prefixed with an explicit "http://" scheme -- that's what tells
+  # Caddy the site is HTTP-only and skips its automatic-HTTPS/ACME behavior,
+  # same end goal as the port-only key above. These names aren't resolvable
+  # on their own; something on the LAN (router's local DNS, a hosts file,
+  # etc.) needs to point files.erebor/jellyfin.erebor/arm.erebor at erebor's
+  # address for them to work -- that's outside this repo's control.
   services.caddy = {
     enable = true;
-    virtualHosts.":80".extraConfig = ''
-      root * ${servicesPage}
-      file_server
-    '';
+    virtualHosts = {
+      ":80".extraConfig = ''
+        root * ${servicesPage}
+        file_server
+      '';
+      "http://files.erebor".extraConfig = ''
+        reverse_proxy localhost:8080
+      '';
+      "http://jellyfin.erebor".extraConfig = ''
+        reverse_proxy localhost:8096
+      '';
+      "http://arm.erebor".extraConfig = ''
+        reverse_proxy localhost:8081
+      '';
+    };
   };
 
   networking.firewall.allowedTCPPorts = [

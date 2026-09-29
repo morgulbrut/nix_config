@@ -12,10 +12,24 @@
     ../../modules/lutris/system.nix
     ../../modules/noctalia-drive-health/system.nix
     ../../modules/virtualisation/system.nix
+    ../../modules/tailscale/system.nix
     ./hardware-configuration.nix
   ];
 
   networking.hostName = "osgiliath";
+
+  # Key-only, reachable on the tailnet and the LAN -- lets osgiliath act as
+  # an SSH jump host to erebor from outside the house (`ssh -J osgiliath
+  # erebor`) using the same authorized_keys list as erebor
+  # (hosts/common/base.nix), without needing erebor itself exposed.
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
+  };
 
   services.auto-cpufreq.enable = false;
 
