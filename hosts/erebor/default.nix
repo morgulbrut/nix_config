@@ -35,6 +35,9 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
+    # Only announce on the LAN NIC. Avahi renamed itself to erebor-2 after a
+    # reload saw its own records echoed back via docker0/tailscale0.
+    allowInterfaces = [ "enp11s0" ];
     publish = {
       enable = true;
       addresses = true;
