@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -10,6 +10,8 @@
     ../../modules/shell/home.nix
     ../../modules/zsh/home.nix
   ];
+
+  home.packages = [ pkgs.claude-code ];
 
   xdg.enable = true;
 
