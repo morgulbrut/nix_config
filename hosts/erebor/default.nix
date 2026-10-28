@@ -9,6 +9,8 @@
     ../../modules/webserver/system.nix
     ../../modules/filebrowser/system.nix
     ../../modules/ollama/system.nix
+    ../../modules/gitlab/system.nix
+    ../../modules/pihole/system.nix
     # Add ../../modules/mainsail/system.nix once a printer is connected —
     # see that file for what to fill in first.
     ./hardware-configuration.nix

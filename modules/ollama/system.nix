@@ -4,7 +4,7 @@
   # active params, which is what makes a 30B model usable here (~5-8 tok/s).
   services.ollama = {
     enable = true;
-    host = "127.0.0.1";
+    host = "0.0.0.0";
     port = 11434;
     # Pulled declaratively on service start (~19GB, needs internet once).
     loadModels = [ "qwen3-coder:30b" ];
@@ -20,9 +20,5 @@
   # Hard cap so a runaway load can't starve the other services.
   systemd.services.ollama.serviceConfig.MemoryMax = "26G";
 
-  # Reachable at http://ollama.erebor (OpenAI-compatible API under /v1).
-  # Needs the same LAN/hosts-file name resolution as the other *.erebor names.
-  services.caddy.virtualHosts."http://ollama.erebor".extraConfig = ''
-    reverse_proxy localhost:11434
-  '';
+  networking.firewall.allowedTCPPorts = [ 11434 ];
 }
