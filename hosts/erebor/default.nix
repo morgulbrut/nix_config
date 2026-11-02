@@ -12,7 +12,6 @@
     ../../modules/gitlab/system.nix
     ../../modules/pihole/system.nix
     ../../modules/stikka/system.nix
-    refs/remotes/origin/master
     # Add ../../modules/mainsail/system.nix once a printer is connected —
     # see that file for what to fill in first.
     ./hardware-configuration.nix
