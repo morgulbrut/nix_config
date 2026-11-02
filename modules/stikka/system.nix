@@ -44,7 +44,7 @@ in
       # Image pulls only when missing. To update:
       #   docker pull ghcr.io/stikka-factory/stikka-server:latest
       #   sudo systemctl restart docker-stikka-app
-      image = "ghcr.io/stikka-factory/stikka-server:latest";
+      image = "ghcr.io/stikka-factory/stikka-server:sha-a5b74dd";
       autoStart = true;
       dependsOn = [ "stikka-postgres" ];
       networks = [ "stikka" ];
