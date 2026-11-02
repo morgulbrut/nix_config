@@ -18,6 +18,10 @@
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    # LightCraft (photo library / raw developer); needs rustc >= 1.90, so track unstable
+    lightcraft.url = "github:storytold/lightcraft";
+    lightcraft.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
   };
 
   outputs =

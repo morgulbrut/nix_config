@@ -68,6 +68,33 @@
     ];
   };
 
+  # Fortnightly-ish backup of ~/Data to the NAS (1st and 15th of each month;
+  # Persistent catches up on the next boot if the machine was off). Plain
+  # rsync without --delete, so files removed locally stay in the backup.
+  # Accessing /mnt/nas triggers the NFS automount above.
+  systemd.services.data-backup = {
+    description = "Back up /home/tillo/Data to /mnt/nas/bkp";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "tillo";
+      Nice = 19;
+      IOSchedulingClass = "idle";
+    };
+    path = [ pkgs.rsync ];
+    script = ''
+      mkdir -p /mnt/nas/bkp/Data
+      rsync -a --no-owner --no-group --partial /home/tillo/Data/ /mnt/nas/bkp/Data/
+    '';
+  };
+  systemd.timers.data-backup = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-01,15 03:00";
+      Persistent = true;
+      RandomizedDelaySec = "30min";
+    };
+  };
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;

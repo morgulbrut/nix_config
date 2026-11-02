@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -28,6 +28,11 @@
       run mv "$nvim_dir" "$backup_path"
     fi
   '';
+
+  home.packages = [
+    inputs.lightcraft.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (pkgs.callPackage ../../modules/photocraft/package.nix { })
+  ];
 
   xdg.enable = true;
   fonts.fontconfig.enable = true;
