@@ -11,7 +11,7 @@
     ../../modules/zsh/home.nix
   ];
 
-  home.packages = [ pkgs.claude-code ];
+  home.packages = [ pkgs.claude-code pkgs.gh ];
 
   xdg.enable = true;
 
