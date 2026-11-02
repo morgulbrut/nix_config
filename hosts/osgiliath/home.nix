@@ -1,6 +1,8 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
+  # kikit (KiCad addon) pulls in pybars3, flagged CVE-2026-119716
+  nixpkgs.config.permittedInsecurePackages = [ "python3.13-pybars3-0.9.7" ];
 
   home.username = "tillo";
   home.homeDirectory = "/home/tillo";
@@ -28,6 +30,11 @@
       run mv "$nvim_dir" "$backup_path"
     fi
   '';
+
+  home.packages = [
+    inputs.lightcraft.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (pkgs.callPackage ../../modules/photocraft/package.nix { })
+  ];
 
   xdg.enable = true;
   fonts.fontconfig.enable = true;

@@ -611,6 +611,7 @@ binds {
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+    Mod+Shift+S hotkey-overlay-title="Screenshot and annotate: satty" { spawn-sh "grim -g \"$(slurp -w 0 -b 00000066)\" -t ppm - | satty --filename - --fullscreen --copy-command wl-copy --early-exit --output-filename \"$HOME/Pictures/Screenshots/satty-$(date +%Y-%m-%d_%H-%M-%S).png\""; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

@@ -112,6 +112,12 @@ in
     ./polkit/home.nix
   ];
 
+  home.packages = with pkgs; [
+    grim
+    slurp
+    satty
+  ];
+
   xdg.configFile."niri/config.kdl".text =
     noBrightnessConfig
     + ''
