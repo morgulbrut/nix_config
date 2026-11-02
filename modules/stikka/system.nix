@@ -11,7 +11,7 @@ let
   # there, and the name of the JSON file it writes). Not secret. Leave null
   # until the tunnel exists: the app then still runs, just without the
   # tunnel, at http://127.0.0.1:3100 on erebor.
-  tunnelId = null;
+  tunnelId = "76c6b0b0-3582-4541-a6e1-2d7e8452e8d2";
 
   stateDir = "/var/lib/stikka";
 
