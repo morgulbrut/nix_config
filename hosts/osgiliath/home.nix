@@ -1,6 +1,8 @@
 { config, lib, pkgs, inputs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
+  # kikit (KiCad addon) pulls in pybars3, flagged CVE-2026-119716
+  nixpkgs.config.permittedInsecurePackages = [ "python3.13-pybars3-0.9.7" ];
 
   home.username = "tillo";
   home.homeDirectory = "/home/tillo";
